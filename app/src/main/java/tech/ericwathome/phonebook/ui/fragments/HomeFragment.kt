@@ -5,8 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import tech.ericwathome.phonebook.adapter.AllContactsAdapter
+import tech.ericwathome.phonebook.data.ContactData
 import tech.ericwathome.phonebook.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -20,12 +23,18 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
-        initializeViews(view)
+        initializeViews()
         return view
     }
 
-    private fun initializeViews(view: ConstraintLayout) {
-        Log.d(TAG, "initializeViews: ")
+    private fun initializeViews() {
+        val context = requireContext()
+        val adapter = AllContactsAdapter(context, ContactData.contacts)
+        binding.allContactsRecyclerview.adapter = adapter
+        binding.allContactsRecyclerview.setHasFixedSize(true)
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = RecyclerView.VERTICAL
+        binding.allContactsRecyclerview.layoutManager = layoutManager
     }
 
 }

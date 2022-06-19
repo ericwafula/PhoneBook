@@ -2,7 +2,7 @@ package tech.ericwathome.phonebook.data
 
 data class Contact (var firstName: String, var lastName: String, var phoneNumber: String, var isFavorite: Boolean = false)
 
-object contactData {
+object ContactData {
     var contacts = ArrayList<Contact>()
 
     init {
