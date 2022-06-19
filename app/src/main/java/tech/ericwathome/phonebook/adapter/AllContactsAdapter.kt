@@ -46,7 +46,7 @@ class AllContactsAdapter (private val context: Context, val contacts: ArrayList<
             txvUserName.text = "${contact.firstName} ${contact.lastName}"
             txvPhone.text = contact.phoneNumber
 
-            if (!contact.isFavorite) {
+            if (contact.isFavorite) {
                 imvFavorite.setImageDrawable(ResourcesCompat.getDrawable(context.resources, R.drawable.ic_favorite_filled, null))
             } else {
                 imvFavorite.setImageDrawable(ResourcesCompat.getDrawable(context.resources, R.drawable.ic_favorites_outline, null))
