@@ -22,6 +22,7 @@ class HomeFragment : Fragment() {
     private val TAG = this::class.simpleName
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: AllContactsAdapter
+    private var favPosition = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -74,6 +75,10 @@ class HomeFragment : Fragment() {
         ContactData.contacts.add(position, deletedContact)
         adapter.notifyItemRangeChanged(position, ContactData.contacts.size)
         adapter.notifyItemInserted(position)
+
+        if (deletedContact.isFavorite) {
+            ContactData.favoriteContacts.add(favPosition, deletedContact)
+        }
     }
 
     private fun deleteContact(
@@ -85,6 +90,7 @@ class HomeFragment : Fragment() {
         adapter.notifyItemRangeChanged(position, ContactData.contacts.size)
 
         if (deletedContact.isFavorite) {
+            favPosition = ContactData.favoriteContacts.indexOf(deletedContact)
             ContactData.favoriteContacts.remove(deletedContact)
         }
     }
