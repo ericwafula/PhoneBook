@@ -83,5 +83,9 @@ class HomeFragment : Fragment() {
         ContactData.contacts.remove(deletedContact)
         adapter.notifyItemRemoved(position)
         adapter.notifyItemRangeChanged(position, ContactData.contacts.size)
+
+        if (deletedContact.isFavorite) {
+            ContactData.favoriteContacts.remove(deletedContact)
+        }
     }
 }
