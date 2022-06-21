@@ -4,6 +4,7 @@ data class Contact (var firstName: String, var lastName: String, var phoneNumber
 
 object ContactData {
     var contacts = ArrayList<Contact>()
+    var favoriteContacts = ArrayList<Contact>()
 
     init {
         initializeContacts()

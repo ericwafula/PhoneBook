@@ -63,8 +63,10 @@ class AllContactsAdapter (private val context: Context, private val contacts: Ar
             currentContact.isFavorite = !currentContact.isFavorite
             if (currentContact.isFavorite) {
                 binding.imvFavorite.setImageDrawable(starFilled)
+                ContactData.favoriteContacts.add(currentContact)
             } else {
                 binding.imvFavorite.setImageDrawable(starOutlined)
+                ContactData.favoriteContacts.remove(currentContact)
             }
         }
     }
