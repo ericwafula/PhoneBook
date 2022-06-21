@@ -29,10 +29,6 @@ class MainActivity : AppCompatActivity() {
         val appbarConfiguration = AppBarConfiguration(fragments)
         binding.toolbar.setupWithNavController(navController, appbarConfiguration)
         binding.bottomNavView.setupWithNavController(navController)
-
-        binding.btnAdd.setOnClickListener {
-            Snackbar.make(binding.root, "Clicked", Toast.LENGTH_LONG).show()
-        }
     }
 
 
