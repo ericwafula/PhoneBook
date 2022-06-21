@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
+import tech.ericwathome.phonebook.R
 import tech.ericwathome.phonebook.adapter.AllContactsAdapter
 import tech.ericwathome.phonebook.data.Contact
 import tech.ericwathome.phonebook.data.ContactData
@@ -55,17 +58,22 @@ class HomeFragment : Fragment() {
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
             val position = viewHolder.adapterPosition
             val deletedContact = ContactData.contacts[position]
+            val bottomNav: BottomNavigationView = activity?.findViewById(R.id.bottom_nav_view)!!
             deleteContact(deletedContact, position)
+
             Snackbar.make(binding.root, "Deleted", Snackbar.LENGTH_LONG)
                 .setAction("undo") {
                     undoDelete(deletedContact, position)
                 }
+                .apply { anchorView = bottomNav }
                 .show()
         }
     })
 
     private fun undoDelete(deletedContact: Contact, position: Int) {
-
+        ContactData.contacts.add(position, deletedContact)
+        adapter.notifyItemRangeChanged(position, ContactData.contacts.size)
+        adapter.notifyItemInserted(position)
     }
 
     private fun deleteContact(

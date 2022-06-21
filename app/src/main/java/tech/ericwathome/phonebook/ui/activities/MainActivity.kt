@@ -2,10 +2,12 @@ package tech.ericwathome.phonebook.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.snackbar.Snackbar
 import tech.ericwathome.phonebook.R
 import tech.ericwathome.phonebook.databinding.ActivityMainBinding
 
@@ -27,6 +29,10 @@ class MainActivity : AppCompatActivity() {
         val appbarConfiguration = AppBarConfiguration(fragments)
         binding.toolbar.setupWithNavController(navController, appbarConfiguration)
         binding.bottomNavView.setupWithNavController(navController)
+
+        binding.btnAdd.setOnClickListener {
+            Snackbar.make(binding.root, "Clicked", Toast.LENGTH_LONG).show()
+        }
     }
 
 
