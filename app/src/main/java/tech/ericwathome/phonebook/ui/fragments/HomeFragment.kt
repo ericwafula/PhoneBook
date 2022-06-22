@@ -1,5 +1,6 @@
 package tech.ericwathome.phonebook.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import tech.ericwathome.phonebook.adapter.AllContactsAdapter
 import tech.ericwathome.phonebook.data.Contact
 import tech.ericwathome.phonebook.data.ContactData
 import tech.ericwathome.phonebook.databinding.FragmentHomeBinding
+import tech.ericwathome.phonebook.ui.activities.ContactActivity
 
 class HomeFragment : Fragment() {
     private val TAG = this::class.simpleName
@@ -43,8 +45,14 @@ class HomeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = RecyclerView.VERTICAL
         binding.allContactsRecyclerview.layoutManager = layoutManager
+        binding.btnAdd.setOnClickListener { navigateToContact() }
 
         itemTouchHelper.attachToRecyclerView(binding.allContactsRecyclerview)
+    }
+
+    private fun navigateToContact() {
+        val intent = Intent(activity, ContactActivity::class.java)
+        startActivity(intent)
     }
 
     private val itemTouchHelper = ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {

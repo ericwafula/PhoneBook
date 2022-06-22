@@ -4,4 +4,10 @@
     <string name="favorites">Favorites</string>
     <string name="like_icon">like icon</string>
     <string name="add_contact_button">add contact button</string>
+    <string name="contact">Contact</string>
+    <string name="contact_details">Contact Details</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="save">Save</string>
 </resources>
